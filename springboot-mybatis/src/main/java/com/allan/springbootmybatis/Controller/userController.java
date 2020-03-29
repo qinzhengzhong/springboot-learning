@@ -1,6 +1,7 @@
 package com.allan.springbootmybatis.Controller;
 
 
+import com.allan.springbootcommon.util.UUIDUtils;
 import com.allan.springbootmybatis.base.BaseController;
 import com.allan.springbootmybatis.entity.User;
 import com.allan.springbootmybatis.query.UserQuery;
@@ -48,7 +49,7 @@ public class userController extends BaseController {
 	@GetMapping("/hello")
 	public String test() {
 		String msg = "hello,this is a springboot demo";
-		logger.info(getSuccessResult(msg));
+		logger.info("输出："+getSuccessResult(msg));
 		return getSuccessResult(msg);
 	}
 	
