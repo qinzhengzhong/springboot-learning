@@ -1,0 +1,45 @@
+#服务端口
+server:
+  port: 8081
+# 连接mysql数据库配置
+spring:
+    datasource:
+        name: springbootDemo
+        url: jdbc:mysql://localhost:3306/springboot_demo?characterEncoding=UTF-8
+        username: root
+        password: Qinzz@allan123
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+
+# 该配置节点为独立的节点
+mybatis:
+  mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.allan.springbootmybatis.entity  # 注意：对应实体类的路径
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    
+#输入日志级别  
+debug: true    
+logging:
+  level:
+    com.allan.springbootmybatis.mapper:  debug  # 打印mapper下的所有SQL
+
+        
+        
