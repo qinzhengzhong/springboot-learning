@@ -1,7 +1,6 @@
 package com.allan.springbootmybatis.Controller;
 
 
-import com.allan.springbootcommon.util.UUIDUtils;
 import com.allan.springbootmybatis.base.BaseController;
 import com.allan.springbootmybatis.entity.User;
 import com.allan.springbootmybatis.query.UserQuery;
@@ -71,7 +70,7 @@ public class userController extends BaseController {
 		PageInfo<User> pageInfo = null;
 		try {
 			PageHelper.startPage(pageNum,pageSize);
-			user.setAge(24);
+//			user.setAge(24);
 			userList = userServer.queryUserList(user);
 			pageInfo = new PageInfo<User>(userList);
 		} catch (Exception e) {

@@ -1,5 +1,6 @@
-package com.allan.springbootcommon.util;
+package com.allan.springbootmybatis.util;
 
+import com.allan.springbootcommon.util.DateUtil;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.Field;
