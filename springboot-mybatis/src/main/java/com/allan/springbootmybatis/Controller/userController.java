@@ -9,6 +9,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,8 @@ import java.util.List;
  * @date 2018年8月20日
  *
  */
+
+@Api(value="用户controller",tags={"用户操作接口"})
 @RestController
 @RequestMapping("/user")
 public class userController extends BaseController {
@@ -64,8 +69,11 @@ public class userController extends BaseController {
 	 * @throws
 	 */
 	@GetMapping("/queryUserList")
-	public String queryUserList(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-								@RequestParam(value = "pageSize", defaultValue = "10")Integer pageSize, UserQuery user) {
+	@ApiOperation(value="获取用户列表",tags={"获取用户信息列表"},notes="注意问题点")
+	public String queryUserList(@RequestParam(value = "pageNum", defaultValue = "1")
+											@ApiParam(value = "pageNum",name = "页码",defaultValue = "1") Integer pageNum,
+								@RequestParam(value = "pageSize", defaultValue = "10")
+								@ApiParam(value = "pageSize",name = "每页数量（默认10s）",defaultValue = "10")Integer pageSize, UserQuery user) {
 		List<User> userList=Lists.newArrayList();
 		PageInfo<User> pageInfo = null;
 		try {
@@ -89,8 +97,10 @@ public class userController extends BaseController {
 	* @return String    返回类型  
 	* @throws
 	 */
+
+	@ApiOperation(value="获取用户信息",tags={"获取用户信息"},notes="注意问题点")
 	@GetMapping("/userById")
-	public String getUserInfo(Integer userId) {
+	public String getUserInfo(@ApiParam(value = "用户ID",name = "userId",required = true) Integer userId) {
 		User user = null;
 		try {
 			if (userId == null) {
