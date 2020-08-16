@@ -21,6 +21,8 @@
     <modules>
         <module>springboot-mybatis</module>
         <module>springboot-common</module>
+        <module>springboot-redis</module>
+        <module>springboot-rabbitmq</module>
     </modules>
 
     <properties>
