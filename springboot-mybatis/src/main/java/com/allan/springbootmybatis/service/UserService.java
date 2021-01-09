@@ -27,4 +27,15 @@ public interface UserService extends BaseService<User,String> {
 	* @throws
 	 */
 	User getUserById(Integer userId);
+
+	/**
+	 *
+	 * 功能描述: 添加全国火车站信息
+	 *
+	 * @param:
+	 * @return:
+	 * @auther: qinzhengzhong
+	 * @date: 2021/1/9 下午9:25
+	 */
+	void addStation();
 }

@@ -56,6 +56,21 @@ public class userController extends BaseController {
 		logger.info("输出："+getSuccessResult(msg));
 		return getSuccessResult(msg);
 	}
+
+	/**
+	 *
+	 * 功能描述: 添加全国火车张信息
+	 *
+	 * @param:
+	 * @return:
+	 * @auther: qinzhengzhong
+	 * @date: 2021/1/9 下午3:25
+	 */
+	@GetMapping(value = "/addStation")
+	public String addStation() {
+		userServer.addStation();
+		return getSuccessResult("添加全国火车站成功");
+	}
 	
 	/**
 	 * 

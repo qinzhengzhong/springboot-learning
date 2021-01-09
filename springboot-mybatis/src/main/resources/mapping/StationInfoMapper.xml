@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allan.springbootmybatis.mapper.StationInfoMapper">
+  <resultMap id="BaseResultMap" type="com.allan.springbootmybatis.entity.StationInfo">
+
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="STATION_NAME" jdbcType="VARCHAR" property="stationName" />
+    <result column="STATION_NAME_EN" jdbcType="VARCHAR" property="stationNameEn" />
+    <result column="SHORT_NAME" jdbcType="VARCHAR" property="shortName" />
+    <result column="STATION_CODE" jdbcType="VARCHAR" property="stationCode" />
+    <result column="NAME_SORT" jdbcType="VARCHAR" property="nameSort" />
+    <result column="CITY_NAME" jdbcType="VARCHAR" property="cityName" />
+    <result column="STA_SEQUENCE" jdbcType="INTEGER" property="staSequence" />
+    <result column="PIN_YIN" jdbcType="VARCHAR" property="pinYin" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, STATION_NAME, STATION_NAME_EN, SHORT_NAME, STATION_CODE, NAME_SORT, CITY_NAME, 
+    STA_SEQUENCE, PIN_YIN
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_STATION_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+    delete from T_STATION_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.allan.springbootmybatis.entity.StationInfo">
+    insert into T_STATION_INFO (ID, STATION_NAME, STATION_NAME_EN, 
+      SHORT_NAME, STATION_CODE, NAME_SORT, 
+      CITY_NAME, STA_SEQUENCE, PIN_YIN
+      )
+    values (#{id,jdbcType=VARCHAR}, #{stationName,jdbcType=VARCHAR}, #{stationNameEn,jdbcType=VARCHAR}, 
+      #{shortName,jdbcType=VARCHAR}, #{stationCode,jdbcType=VARCHAR}, #{nameSort,jdbcType=VARCHAR}, 
+      #{cityName,jdbcType=VARCHAR}, #{staSequence,jdbcType=INTEGER}, #{pinYin,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.allan.springbootmybatis.entity.StationInfo">
+
+    insert into T_STATION_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="stationName != null">
+        STATION_NAME,
+      </if>
+      <if test="stationNameEn != null">
+        STATION_NAME_EN,
+      </if>
+      <if test="shortName != null">
+        SHORT_NAME,
+      </if>
+      <if test="stationCode != null">
+        STATION_CODE,
+      </if>
+      <if test="nameSort != null">
+        NAME_SORT,
+      </if>
+      <if test="cityName != null">
+        CITY_NAME,
+      </if>
+      <if test="staSequence != null">
+        STA_SEQUENCE,
+      </if>
+      <if test="pinYin != null">
+        PIN_YIN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="stationName != null">
+        #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationNameEn != null">
+        #{stationNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCode != null">
+        #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSort != null">
+        #{nameSort,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="staSequence != null">
+        #{staSequence,jdbcType=INTEGER},
+      </if>
+      <if test="pinYin != null">
+        #{pinYin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.allan.springbootmybatis.entity.StationInfo">
+
+    update T_STATION_INFO
+    <set>
+      <if test="stationName != null">
+        STATION_NAME = #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationNameEn != null">
+        STATION_NAME_EN = #{stationNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCode != null">
+        STATION_CODE = #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSort != null">
+        NAME_SORT = #{nameSort,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="staSequence != null">
+        STA_SEQUENCE = #{staSequence,jdbcType=INTEGER},
+      </if>
+      <if test="pinYin != null">
+        PIN_YIN = #{pinYin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.allan.springbootmybatis.entity.StationInfo">
+
+    update T_STATION_INFO
+    set STATION_NAME = #{stationName,jdbcType=VARCHAR},
+      STATION_NAME_EN = #{stationNameEn,jdbcType=VARCHAR},
+      SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      STATION_CODE = #{stationCode,jdbcType=VARCHAR},
+      NAME_SORT = #{nameSort,jdbcType=VARCHAR},
+      CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      STA_SEQUENCE = #{staSequence,jdbcType=INTEGER},
+      PIN_YIN = #{pinYin,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
