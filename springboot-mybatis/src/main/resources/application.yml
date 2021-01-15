@@ -39,7 +39,7 @@ pagehelper:
 debug: true    
 logging:
   level:
-    com.allan.springbootmybatis.mapper:  debug  # 打印mapper下的所有SQL
+    com.allan.springbootmybatis.mapper:  info  # 打印mapper下的所有SQL
 
         
         

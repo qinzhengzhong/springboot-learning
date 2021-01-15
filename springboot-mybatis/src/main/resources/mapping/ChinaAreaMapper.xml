@@ -24,6 +24,16 @@
     from t_china_area
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_china_area
+    where short_name = #{cityName,jdbcType=VARCHAR}
+    and level_type in(2,3)
+    ORDER BY id
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_china_area
     where id = #{id,jdbcType=INTEGER}

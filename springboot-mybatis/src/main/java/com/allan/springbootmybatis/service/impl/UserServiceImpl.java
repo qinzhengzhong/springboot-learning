@@ -3,8 +3,10 @@ package com.allan.springbootmybatis.service.impl;
 import com.allan.springbootcommon.util.UUIDUtils;
 import com.allan.springbootmybatis.base.BaseDao;
 import com.allan.springbootmybatis.base.BaseServiceImpl;
+import com.allan.springbootmybatis.entity.ChinaArea;
 import com.allan.springbootmybatis.entity.StationInfo;
 import com.allan.springbootmybatis.entity.User;
+import com.allan.springbootmybatis.mapper.ChinaAreaMapper;
 import com.allan.springbootmybatis.mapper.StationInfoMapper;
 import com.allan.springbootmybatis.mapper.UserMapper;
 import com.allan.springbootmybatis.query.UserQuery;
@@ -32,6 +34,8 @@ public class UserServiceImpl extends BaseServiceImpl<User,String> implements Use
 	UserMapper userMapper;
 	@Autowired
 	StationInfoMapper stationInfoMapper;
+	@Autowired
+	ChinaAreaMapper chinaAreaMapper;
 
 	@Override
 	public BaseDao<User, String> getDao() {
@@ -68,7 +72,7 @@ public class UserServiceImpl extends BaseServiceImpl<User,String> implements Use
 				String pinying = chezhan[4];
 				int staSequence = Integer.valueOf(chezhan[5]);
 				StationInfo info = new StationInfo();
-				info.setId(UUIDUtils.getUuid());
+				info.setId(Integer.toString(staSequence));
 				info.setStationName(stationName);
 				info.setStationNameEn(stationNameEn);
 				info.setShortName(shortName);
@@ -76,11 +80,28 @@ public class UserServiceImpl extends BaseServiceImpl<User,String> implements Use
 				info.setPinYin(pinying);
 				info.setStaSequence(staSequence);
 				String sort =shortName.substring(0,1);
-				info.setNameSort(sort);
-				int a = stationInfoMapper.insertSelective(info);
-				System.out.println(a);
+				info.setNameSort(sort.toUpperCase());
+				info = getCityName(info,stationName);
+				stationInfoMapper.insertSelective(info);
 			}
 		}
+	}
+
+	private StationInfo getCityName(StationInfo stationInfo,String stationName){
+		String cityName = stationName;
+		if (cityName.length()>2){
+			if (cityName.contains("东") || cityName.contains("西") || cityName.contains("南") || cityName.contains("北")){
+				cityName = cityName.substring(0,cityName.length()-1);
+			}
+		}
+		if (StringUtils.isNotBlank(cityName)){
+			List<ChinaArea> list = chinaAreaMapper.selectByName(cityName.trim().replace(" ",""));
+			if (list.size()>0){
+				stationInfo.setCityName(cityName);
+				stationInfo.setCityCode(Integer.toString(list.get(0).getId()));
+			}
+		}
+		return stationInfo;
 	}
 
 

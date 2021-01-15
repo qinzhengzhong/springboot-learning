@@ -2,6 +2,8 @@ package com.allan.springbootmybatis.mapper;
 
 import com.allan.springbootmybatis.entity.ChinaArea;
 
+import java.util.List;
+
 public interface ChinaAreaMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface ChinaAreaMapper {
     int updateByPrimaryKeySelective(ChinaArea record);
 
     int updateByPrimaryKey(ChinaArea record);
+
+    List<ChinaArea> selectByName(String city);
 }

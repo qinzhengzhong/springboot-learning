@@ -9,13 +9,14 @@
     <result column="SHORT_NAME" jdbcType="VARCHAR" property="shortName" />
     <result column="STATION_CODE" jdbcType="VARCHAR" property="stationCode" />
     <result column="NAME_SORT" jdbcType="VARCHAR" property="nameSort" />
-    <result column="CITY_NAME" jdbcType="VARCHAR" property="cityName" />
     <result column="STA_SEQUENCE" jdbcType="INTEGER" property="staSequence" />
     <result column="PIN_YIN" jdbcType="VARCHAR" property="pinYin" />
+    <result column="CITY_NAME" jdbcType="VARCHAR" property="cityName" />
+    <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, STATION_NAME, STATION_NAME_EN, SHORT_NAME, STATION_CODE, NAME_SORT, CITY_NAME, 
-    STA_SEQUENCE, PIN_YIN
+    ID, STATION_NAME, STATION_NAME_EN, SHORT_NAME, STATION_CODE, NAME_SORT,
+    STA_SEQUENCE, PIN_YIN,CITY_NAME,CITY_CODE
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -31,11 +32,12 @@
   <insert id="insert" parameterType="com.allan.springbootmybatis.entity.StationInfo">
     insert into T_STATION_INFO (ID, STATION_NAME, STATION_NAME_EN, 
       SHORT_NAME, STATION_CODE, NAME_SORT, 
-      CITY_NAME, STA_SEQUENCE, PIN_YIN
+      CITY_NAME, STA_SEQUENCE, PIN_YIN,CITY_CODE
       )
     values (#{id,jdbcType=VARCHAR}, #{stationName,jdbcType=VARCHAR}, #{stationNameEn,jdbcType=VARCHAR}, 
       #{shortName,jdbcType=VARCHAR}, #{stationCode,jdbcType=VARCHAR}, #{nameSort,jdbcType=VARCHAR}, 
-      #{cityName,jdbcType=VARCHAR}, #{staSequence,jdbcType=INTEGER}, #{pinYin,jdbcType=VARCHAR}
+      #{cityName,jdbcType=VARCHAR}, #{staSequence,jdbcType=INTEGER}, #{pinYin,jdbcType=VARCHAR},
+      #{cityCode,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.allan.springbootmybatis.entity.StationInfo">
@@ -69,6 +71,9 @@
       <if test="pinYin != null">
         PIN_YIN,
       </if>
+      <if test="cityCode != null">
+        CITY_CODE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -97,6 +102,9 @@
       </if>
       <if test="pinYin != null">
         #{pinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -128,6 +136,9 @@
       <if test="pinYin != null">
         PIN_YIN = #{pinYin,jdbcType=VARCHAR},
       </if>
+      <if test="cityCode != null">
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -141,7 +152,8 @@
       NAME_SORT = #{nameSort,jdbcType=VARCHAR},
       CITY_NAME = #{cityName,jdbcType=VARCHAR},
       STA_SEQUENCE = #{staSequence,jdbcType=INTEGER},
-      PIN_YIN = #{pinYin,jdbcType=VARCHAR}
+      PIN_YIN = #{pinYin,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
