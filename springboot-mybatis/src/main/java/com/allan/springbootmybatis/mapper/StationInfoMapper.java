@@ -3,6 +3,8 @@ package com.allan.springbootmybatis.mapper;
 
 import com.allan.springbootmybatis.entity.StationInfo;
 
+import java.util.List;
+
 public interface StationInfoMapper {
 
     int deleteByPrimaryKey(String id);
@@ -20,4 +22,6 @@ public interface StationInfoMapper {
     int updateByPrimaryKeySelective(StationInfo record);
 
     int updateByPrimaryKey(StationInfo record);
+
+    List<StationInfo> getAllStations();
 }

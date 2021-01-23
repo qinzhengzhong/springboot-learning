@@ -71,6 +71,11 @@ public class userController extends BaseController {
 		userServer.addStation();
 		return getSuccessResult("添加全国火车站成功");
 	}
+
+	@GetMapping(value = "/queryStation")
+	public String queryStation(String id) {
+		return null;
+	}
 	
 	/**
 	 * 

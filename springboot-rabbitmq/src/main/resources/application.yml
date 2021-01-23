@@ -10,7 +10,7 @@ spring:
     port: 5672
     username: guest
     password: guest
-    virtual-host: /
+    virtual-host: AllanHost
       connection-timeout: 10000
       listener:
         simple:

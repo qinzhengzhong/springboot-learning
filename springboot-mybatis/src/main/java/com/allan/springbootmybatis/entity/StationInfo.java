@@ -2,6 +2,8 @@ package com.allan.springbootmybatis.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * Database Table Remarks:
  *   全国火车高铁站表
@@ -10,7 +12,7 @@ import lombok.Data;
  * This class corresponds to the database table T_STATION_INFO
  */
 @Data
-public class StationInfo {
+public class StationInfo implements Serializable {
     /**
      * Database Column Remarks:
      *   主键id
